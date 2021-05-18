@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts/front-end/main :: html1">
+    <meta charset="UTF-8">
+    <title>Index Page</title>
+</head>
+<body>
+<header th:replace="layouts/front-end/main :: header"></header>
+
+<section th:replace="layouts/front-end/main :: main-banner" id="banner"></section>
+
+
+<!--================Login Box Area =================-->
+<section class="login_box_area p_120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="login_box_img">
+                    <img class="img-fluid" src="/assets/front-end/img/login.jpg" alt="">
+                    <div class="hover">
+                        <h4>Existing Customer?</h4>
+                        <p>Log In to your account</p>
+                        <a th:href="@{/login}" class="main_btn" href="#">Login</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="login_form_inner reg_form">
+                    <h3>Create an Account</h3>
+                    <form action="" th:action="@{/register}" th:object="${user}" method="post" class="row login_form">
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" th:field="*{fullName}" placeholder="Enter fullname">
+                            <span th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="text-danger form-text"></span>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="email" th:field="*{email}" class="form-control" placeholder="Email Address">
+                            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger form-text"></span>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input th:field="*{password}" type="text" class="form-control" placeholder="Password">
+                            <span th:fields="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger form-text"></span>
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <button type="submit" value="submit" class="btn submit_btn">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Login Box Area =================-->
+
+<section th:replace="layouts/front-end/main :: subscription" id="subscription"></section>
+
+<section th:replace="layouts/front-end/main :: footer" id="footer"></section>
+
+<div th:replace="layouts/front-end/main :: script"></div>
+
+</body>
+</html>
