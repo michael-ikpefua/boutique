@@ -42,8 +42,8 @@ public class FrontEndController {
 //        return "register";
 //    }
 
-    @GetMapping("login")
-    public String login() {
-        return "login";
-    }
+//    @GetMapping("login")
+//    public String login() {
+//        return "login";
+//    }
 }

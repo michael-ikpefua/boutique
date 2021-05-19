@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts/back-end/app :: html-header"></head>
+<body>
+<div class="container-scroller">
+  <!-- partial:partials/_navbar.html -->
+  <nav th:replace="layouts/back-end/app :: top-nav"></nav>
+
+
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_sidebar.html -->
+    <nav th:replace="layouts/back-end/app :: sidenav"></nav>
+
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="row">
+
+          <div class="col-md-12 d-flex justify-content-end align-content-end">
+
+            <form th:action="@{/admin/category/store}" th:object="${category}" class="form-inline" method="POST">
+
+              <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger form-text"></div>
+              <div class="form-group mb-2 mr-2">
+                <input type="text" th:field="*{name}" class="form-control" placeholder="Enter Category Name">
+              </div>
+              <button type="submit" class="btn btn-primary mb-2">Save</button>
+            </form>
+
+
+          </div>
+
+
+          <div class="col-md-12 stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <p class="card-title">List of Categories</p>
+
+                <div class="alert alert-success" th:if="${category_success}" th:text="${category_success}"></div>
+                <div class="alert alert-danger" th:if="${delete_category}" th:text="${delete_category}"></div>
+
+                <div th:if="${categories == null}" class="text-danger">No Record Found!</div>
+                <div  class="table-responsive">
+                  <table class="table">
+                    <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Slug</th>
+                      <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="category : ${categories}">
+                      <td th:text="${category.name}"></td>
+                      <td th:text="${category.slug}"></td>
+                      <th class="d-flex">
+                        <a href="" th:href="@{|/admin/category/${category.slug}/edit|} " class="btn btn-success btn-sm mr-1">Edit</a>
+                        <a href="" th:href="@{|/admin/category/${category.id}/delete|}" class="btn btn-danger btn-sm">Delete</a>
+                      </th>
+                    </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer  th:replace="layouts/back-end/app :: footer"></footer>
+
+    </div>
+  </div>
+
+  <!-- container-scroller -->
+</div>
+
+<div th:replace="layouts/back-end/app :: script"></div>
+</body>
+
+</html>
+

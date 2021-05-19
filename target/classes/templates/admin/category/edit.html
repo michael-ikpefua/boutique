@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts/back-end/app :: html-header"></head>
+<body>
+<div class="container-scroller">
+  <!-- partial:partials/_navbar.html -->
+  <nav th:replace="layouts/back-end/app :: top-nav"></nav>
+
+
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_sidebar.html -->
+    <nav th:replace="layouts/back-end/app :: sidenav"></nav>
+
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="row">
+          <div class="col-md-12 stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <p class="card-title">Edit</p>
+
+                <form th:action="@{/admin/category/store}" th:object="${category}" method="POST" class="forms-sample">
+                  <input type="hidden" th:field="*{id}">
+                  <div class="form-group row">
+                    <label for="name" class="col-sm-3 col-form-label">Email</label>
+                    <div class="col-sm-9">
+                      <input type="text" th:field="*{name}" class="form-control" id="name">
+                      <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger form-text"></span>
+
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary mb-2">Save</button>
+                </form>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer  th:replace="layouts/back-end/app :: footer"></footer>
+
+    </div>
+  </div>
+
+  <!-- container-scroller -->
+</div>
+
+<div th:replace="layouts/back-end/app :: script"></div>
+</body>
+
+</html>
+

@@ -1,5 +1,6 @@
 package com.michael.model;
 
+import com.michael.utils.AutoDate;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "users")
-public class User {
+public class User extends AutoDate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,8 +27,6 @@ public class User {
     @NotEmpty(message = "Password field is required")
     @Size(min = 3, message = "Password field should be more than 3 characters long")
     private String password;
-    @Column(name = "created_at", columnDefinition = "DATETIME")
-    private LocalDateTime createdAt = LocalDateTime.now();
-    @Column(name = "updated_at", columnDefinition = "DATETIME")
-    private LocalDateTime updatedAt = LocalDateTime.now();
+
+    private String type;
 }

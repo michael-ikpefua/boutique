@@ -5,4 +5,6 @@ import com.michael.model.User;
 public interface IUserService {
 
     void addUser(User user);
+
+    User login(String email, String password);
 }
