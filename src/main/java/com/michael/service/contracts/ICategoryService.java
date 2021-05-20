@@ -2,6 +2,8 @@ package com.michael.service.contracts;
 
 import com.michael.model.Category;
 
+import java.util.Optional;
+
 
 public interface ICategoryService {
 
@@ -12,5 +14,7 @@ public interface ICategoryService {
     Category getPostBySlug(String slug);
 
     void deleteCategory(long slug);
+
+    Category getCategoryById(long id);
 
 }

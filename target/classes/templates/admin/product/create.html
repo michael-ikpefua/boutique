@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts/back-end/app :: html-header"></head>
+<body>
+<div class="container-scroller">
+  <!-- partial:partials/_navbar.html -->
+  <nav th:replace="layouts/back-end/app :: top-nav"></nav>
+
+
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_sidebar.html -->
+    <nav th:replace="layouts/back-end/app :: sidenav"></nav>
+
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="row">
+          <div class="col-md-12 stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <p class="card-title" th:text="${edit} ? 'Edit' : 'Add'">Product</p>
+
+                <form th:action="@{/admin/product/store}" th:object="${product}" method="POST" class="forms-sample">
+                  <input type="hidden" th:if="${edit}" th:field="*{id}">
+                  <div class="form-group">
+                    <label for="name" class="col-form-label">Title</label>
+                    <input type="text" th:field="*{title}" class="form-control" id="name">
+                    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger form-text"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="category" class="col-form-label">Title</label>
+                    <select th:field="*{category}" id="category" class="form-control">
+                      <option th:each="category : ${categories}" th:value="${category.getId()}" th:text="${category.getName()}"></option>
+                    </select>
+                    <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="text-danger form-text"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="description" class="col-form-label">Description</label>
+                    <textarea th:field="*{description}"  cols="30" id="description" class="form-control"></textarea>
+                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger form-text"></span>
+
+                  </div>
+
+                  <div class="form-group">
+                    <label for="price" class="col-form-label">Price</label>
+                    <input type="text" th:field="*{price}" class="form-control" id="price" >
+                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger form-text"></span>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                  <button class="btn btn-light">Cancel</button>
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer  th:replace="layouts/back-end/app :: footer"></footer>
+
+    </div>
+  </div>
+
+  <!-- container-scroller -->
+</div>
+
+<div th:replace="layouts/back-end/app :: script"></div>
+</body>
+
+</html>
+

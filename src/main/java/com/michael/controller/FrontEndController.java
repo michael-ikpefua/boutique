@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class FrontEndController {
 
+
     @GetMapping("/")
     public String index() {
         return "index";
@@ -37,13 +38,4 @@ public class FrontEndController {
         return "confirmation";
     }
 
-//    @GetMapping("register")
-//    public String register() {
-//        return "register";
-//    }
-
-//    @GetMapping("login")
-//    public String login() {
-//        return "login";
-//    }
 }

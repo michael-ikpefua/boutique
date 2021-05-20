@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts/back-end/app :: html-header"></head>
+<body>
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav th:replace="layouts/back-end/app :: top-nav"></nav>
+
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <nav th:replace="layouts/back-end/app :: sidenav"></nav>
+
+        <div class="main-panel">
+            <div class="content-wrapper">
+
+                <div class="row">
+
+                    <div class="col-md-12 stretch-card">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-end">
+                                <a th:href="@{/admin/product/create}" class="btn btn-primary">Add Product</a>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-title">List of Products</p>
+                                <div class="alert alert-success" th:if="${product_success}" th:text="${product_success}"></div>
+                                <div class="alert alert-danger" th:if="${delete_product}" th:text="${delete_product}"></div>
+                                <div th:if="${products.size() < 1}" class="text-danger">No Record Found!</div>
+                                <div  class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Slug</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="product : ${products}">
+                                            <td th:text="${product.title}"></td>
+                                            <td th:text="${product.description}"></td>
+                                            <th class="d-flex">
+                                                <a href="" th:href="@{|/admin/product/${product.slug}/edit|}" class="btn btn-success btn-sm mr-1">Edit</a>
+                                                <a href="" th:href="@{|/admin/product/${product.id}/delete|}"  class="btn btn-danger btn-sm">Delete</a>
+                                            </th>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer  th:replace="layouts/back-end/app :: footer"></footer>
+
+        </div>
+    </div>
+
+</div>
+
+<div th:replace="layouts/back-end/app :: script"></div>
+</body>
+
+</html>
+

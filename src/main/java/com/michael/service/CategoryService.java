@@ -25,8 +25,8 @@ public class CategoryService implements ICategoryService {
     public void addCategory(Category category) {
 
         category.setSlug(slug.makeSlug(category.getName()));
-
         Category checkSlotExist = getPostBySlug(category.getSlug());
+
         if (checkSlotExist != null) {
             category.setSlug(category.getSlug() + "-" + (checkSlotExist.getId() + 1));
         }
@@ -58,5 +58,17 @@ public class CategoryService implements ICategoryService {
 
         categoryRepository.deleteById(id);
 
+    }
+
+    @Override
+    public Category getCategoryById(long id) {
+        Category category = null;
+        Optional<Category> optionalCategory = categoryRepository.findById(id);
+        if (optionalCategory.isPresent()) {
+            category = optionalCategory.get();
+            return  category;
+        }
+
+        return category;
     }
 }

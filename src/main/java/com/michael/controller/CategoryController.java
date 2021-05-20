@@ -35,17 +35,19 @@ public class CategoryController {
     @PostMapping("/store")
     public String store(@Valid Category category, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
+        Long checkId = category.getId();
+
         if (bindingResult.hasErrors()) {
             return "admin/category/index";
         }
+
         categoryService.addCategory(category);
 
-        if (category.getId() != null) {
-            redirectAttributes.addFlashAttribute("category_success", "Category Updated Succesfully!!!");
-        } else {
+        if (checkId == null) {
             redirectAttributes.addFlashAttribute("category_success", "Category Added Successfully!!!");
+        } else {
+            redirectAttributes.addFlashAttribute("category_success", "Category Updated Succesfully!!!");
         }
-
 
         return "redirect:/admin/category";
     }
