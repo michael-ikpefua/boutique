@@ -78,9 +78,9 @@
               <a href="#">terms & conditions*</a>
             </div>
 
-            <form action="">
+            <form action="" th:action="@{/order}" th:object="${order}" method="POST">
               <div class="form-group">
-                <textarea class="form-control" placeholder="Order Note"></textarea>
+                <textarea class="form-control" th:field="*{body}" placeholder="Order Note"></textarea>
               </div>
               <div>
                 <button class="main_btn " type="submit">Proceed</button>

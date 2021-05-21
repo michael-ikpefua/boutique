@@ -1,5 +1,6 @@
 package com.michael.controller;
 
+import com.michael.model.Order;
 import com.michael.model.User;
 import com.michael.service.contracts.IUserService;
 import com.michael.utils.Money;
@@ -35,12 +36,12 @@ public class CheckoutController {
 
         ArrayList<ShoppingCart> productsInSession = (ArrayList<ShoppingCart>) httpSession.getAttribute("products_in_cart");
         double totalCartPrice = (new ShoppingCart()).getTotalCartPrice(productsInSession);
-        System.err.println("Total Cart Price" + totalCartPrice);
-        model.addAttribute("customer", authenticatedUser);
 
+        model.addAttribute("customer", authenticatedUser);
         model.addAttribute("cart_items", productsInSession);
         model.addAttribute("totalCartPrice", money.formatMoneyToLocalCurrency(String.valueOf(totalCartPrice)));
         model.addAttribute("pageName",  " Checkout Page");
+        model.addAttribute("order", new Order());
 
         return "checkout";
     }

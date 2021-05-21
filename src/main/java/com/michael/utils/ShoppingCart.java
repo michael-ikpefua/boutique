@@ -17,12 +17,11 @@ public class ShoppingCart {
     private String cartPrice;
     private String cartTotal;
 
-
     public double getTotalCartPrice(ArrayList<ShoppingCart> productsInSession) {
         double totalCartPrice = 0.0;
         if (productsInSession != null) {
             totalCartPrice = productsInSession.stream()
-                    .map(ShoppingCart::getProductAmount)
+                    .map(product -> product.getProductAmount() * product.getProductQuantity())
                     .reduce(0.0, Double::sum);
         }
 
