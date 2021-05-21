@@ -14,4 +14,6 @@ public interface IProductService {
     List viewAllProducts();
 
     void deleteProductById(long id);
+
+    Product getProductById(long id);
 }
