@@ -40,17 +40,14 @@ public class LoginController {
 
         if (authenticatedUser == null) {
             model.addAttribute("invalid_user", "User Not Found! Check email or password");
-            System.out.println("I am Not FOund");
             return "login";
         }
-
-        System.out.println("I am found");
 
         httpSession.setAttribute("user_session", authenticatedUser);
         httpSession.setMaxInactiveInterval(1000);
 
         if (authenticatedUser.getType().equals("customer")) {
-            return "redirect:/confirmation";
+            return "redirect:/checkout";
         }
 
         return  "redirect:/admin/dashboard";

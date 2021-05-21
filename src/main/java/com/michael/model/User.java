@@ -27,6 +27,12 @@ public class User extends AutoDate {
     @NotEmpty(message = "Password field is required")
     @Size(min = 3, message = "Password field should be more than 3 characters long")
     private String password;
-
     private String type;
+
+    //Shipping Details:
+    private String phone;
+    @Column(columnDefinition = "TEXT")
+    private String address;
+    private String location;
+
 }

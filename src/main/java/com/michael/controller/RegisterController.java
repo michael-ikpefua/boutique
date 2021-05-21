@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -31,6 +32,25 @@ public class RegisterController {
             return  "register";
         }
         userService.addUser(user);
-        return "redirect:/confirmation";
+        return "redirect:/checkout";
+    }
+
+    @PostMapping("profile/update")
+    public String update(@ModelAttribute("customer") User customer, RedirectAttributes redirectAttributes) {
+
+
+        if (customer.getId() == null) {
+            redirectAttributes.addFlashAttribute("invalid_profile", "Please create an accout!!!");
+            return "redirect:/register";
+        } else {
+            User user = userService.getUserById(customer.getId());
+            user.setPhone(customer.getPhone());
+            user.setAddress(customer.getAddress());
+            user.setLocation(customer.getLocation());
+            userService.addUser(user);
+            return "redirect:/checkout";
+
+        }
+
     }
 }

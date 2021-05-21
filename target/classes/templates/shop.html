@@ -54,7 +54,7 @@
             <div class="widgets_inner">
               <ul class="list">
                 <li th:if="${categories}" th:each="category :  ${categories}">
-                  <a href="#" th:href="@{/shop/${category.slug}}" th:text="${category.name}"></a>
+                  <a href="#" th:href="@{|/shop/${category.slug}|}" th:text="${category.name}"></a>
                 </li>
               </ul>
             </div>

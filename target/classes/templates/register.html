@@ -26,6 +26,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
+                <div class="alert alert-danger" th:if="${invalid_profile}" th:text="${invalid_profile}"></div>
                 <div class="login_form_inner reg_form">
                     <h3>Create an Account</h3>
                     <form action="" th:action="@{/register}" th:object="${user}" method="post" class="row login_form">

@@ -31,5 +31,18 @@ public class UserService implements IUserService {
        return user;
     }
 
+    @Override
+    public User getUserById(long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        User user = null;
+        if (userOptional.isPresent()) {
+            user = userOptional.get();
+            return user;
+        }
+
+        return user;
+
+    }
+
 
 }

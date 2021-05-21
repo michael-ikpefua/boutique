@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Controller
 public class ShoppingCartController {
@@ -27,8 +28,10 @@ public class ShoppingCartController {
     public String index(Model model, HttpSession session) {
 
         ArrayList<ShoppingCart> productsInSession = (ArrayList<ShoppingCart>) session.getAttribute("products_in_cart");
+        double totalCartPrice = (new ShoppingCart()).getTotalCartPrice(productsInSession);
 
         model.addAttribute("cart_items", productsInSession);
+        model.addAttribute("totalCartPrice", money.formatMoneyToLocalCurrency(String.valueOf(totalCartPrice)));
 
         return "shopping-cart";
 

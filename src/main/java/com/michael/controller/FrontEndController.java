@@ -28,9 +28,9 @@ public class FrontEndController {
         return "index";
     }
 
-
     @GetMapping("/shop")
     public String shop(Model model) {
+        model.addAttribute("pageName", "Shop Page");
         model.addAttribute("categories", categoryService.viewAllCategories());
         model.addAttribute("products", productService.viewAllProducts());
         return "shop";
@@ -44,6 +44,7 @@ public class FrontEndController {
 
         List<Product> products = category.getProducts();
 
+        model.addAttribute("pageName",  category.getName() + " Category");
         model.addAttribute("categories", categoryService.viewAllCategories());
         model.addAttribute("products", products);
 
@@ -53,11 +54,6 @@ public class FrontEndController {
     @GetMapping("/product-details")
     public String productDetails() {
         return "product-detail";
-    }
-
-    @GetMapping("checkout")
-    public String checkout() {
-        return "checkout";
     }
 
     @GetMapping("confirmation")
