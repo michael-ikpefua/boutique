@@ -13,8 +13,8 @@
 <!--================Cart Area =================-->
 <section class="cart_area">
   <div class="container">
+    <div class="alert alert-success" th:if="${cart_messasge}" th:text="${cart_messasge}"></div>
     <div class="cart_inner">
-      <div class="alert alert-success" th:if="${cart_messasge}" th:text="${cart_messasge}"></div>
       <div th:if="${cart_items ==  null}" class="text-danger">No Item in cart</div>
       <div class="table-responsive">
         <table class="table">

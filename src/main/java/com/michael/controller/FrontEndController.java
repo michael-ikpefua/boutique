@@ -29,11 +29,6 @@ public class FrontEndController {
         return "product-detail";
     }
 
-    @GetMapping("/cart")
-    public String shoppingCart() {
-        return "shopping-cart";
-    }
-
     @GetMapping("checkout")
     public String checkout() {
         return "checkout";

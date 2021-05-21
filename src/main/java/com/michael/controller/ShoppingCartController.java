@@ -20,11 +20,19 @@ public class ShoppingCartController {
     @Autowired
     IProductService productService;
 
-//    @Autowired
-//    ShoppingCart cart;
-
     @Autowired
     Money money;
+
+    @GetMapping("/product/carts")
+    public String index(Model model, HttpSession session) {
+
+        ArrayList<ShoppingCart> productsInSession = (ArrayList<ShoppingCart>) session.getAttribute("products_in_cart");
+
+        model.addAttribute("cart_items", productsInSession);
+
+        return "shopping-cart";
+
+    }
 
     @GetMapping("/product/{productId}/add-to-cart")
     public String store(@PathVariable(value = "productId") long productId, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
@@ -56,23 +64,17 @@ public class ShoppingCartController {
                     productInCart1.setCartPrice(cartItem.getCartPrice());
                     double cartPriceUpdated = this.calculateCartPriceTotal(productInCart1.getProductAmount(), productInCart1.getProductQuantity());
 
-                    System.err.println("Cart Quantity::" + productInCart1.getProductQuantity());
-                    System.err.println("Cart Price::" + cartPriceUpdated);
-
                     productInCart1.setCartTotal(money.formatMoneyToLocalCurrency(String.valueOf(cartPriceUpdated)));
 
                     productExistInSession = true;
 
                     productInSessionIndex = productsInSession.indexOf(cartItem);
 
-
                 }
             }
 
             if (productExistInSession) {
-
                 productsInSession.set(productInSessionIndex, productInCart1);
-
                 redirectAttributes.addFlashAttribute("cart_message", "Product in cart Updated Successfully!");
 
             } else {
@@ -83,9 +85,7 @@ public class ShoppingCartController {
             }
         }
 
-        model.addAttribute("cart_items", productsInSession);
-
-        return "shopping-cart";
+        return "redirect:/product/carts";
 
     }
 
