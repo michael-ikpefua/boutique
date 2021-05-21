@@ -54,7 +54,7 @@ public class CategoryController {
     @GetMapping("/{slug}/edit")
     public String edit(@PathVariable(value = "slug") String slug, Model model) {
 
-        Category category = categoryService.getPostBySlug(slug);
+        Category category = categoryService.getCategoryBySlug(slug);
 
         model.addAttribute("category", category);
 

@@ -18,29 +18,11 @@
     <div class="row flex-row-reverse">
       <div class="col-lg-9">
         <div class="product_top_bar">
-          <h2>Header Place Holder</h2>
+          <h2>Items in Shop</h2>
         </div>
         <div class="latest_product_inner row">
-          <div class="col-lg-3 col-md-3 col-sm-6">
-            <div class="f_p_item">
-              <div class="f_p_img">
-                <img class="img-fluid" src="/assets/front-end/img/product/feature-product/f-p-1.jpg" alt="">
-                <div class="p_icon">
-                  <a href="#">
-                    <i class="lnr lnr-heart"></i>
-                  </a>
-                  <a href="#">
-                    <i class="lnr lnr-cart"></i>
-                  </a>
-                </div>
-              </div>
-              <a href="#">
-                <h4>Long Sleeve TShirt</h4>
-              </a>
-              <h5>$150.00</h5>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-6">
+
+          <div th:if="${products}" th:each="product :  ${products}" class="col-lg-3 col-md-3 col-sm-6">
             <div class="f_p_item">
               <div class="f_p_img">
                 <img class="img-fluid" src="/assets/front-end/img/product/feature-product/f-p-2.jpg" alt="">
@@ -48,131 +30,19 @@
                   <a href="#">
                     <i class="lnr lnr-heart"></i>
                   </a>
-                  <a href="#">
+                  <a href="#" th:href="@{|/shop/${product.id}/add-to-cart|}">
                     <i class="lnr lnr-cart"></i>
                   </a>
                 </div>
               </div>
               <a href="#">
-                <h4>Long Sleeve TShirt</h4>
+                <h4 th:text="${product.title}"></h4>
               </a>
-              <h5>$150.00</h5>
+              <h5 th:text="${product.price}"></h5>
+
             </div>
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-6">
-            <div class="f_p_item">
-              <div class="f_p_img">
-                <img class="img-fluid" src="/assets/front-end/img/product/feature-product/f-p-3.jpg" alt="">
-                <div class="p_icon">
-                  <a href="#">
-                    <i class="lnr lnr-heart"></i>
-                  </a>
-                  <a href="#">
-                    <i class="lnr lnr-cart"></i>
-                  </a>
-                </div>
-              </div>
-              <a href="#">
-                <h4>Long Sleeve TShirt</h4>
-              </a>
-              <h5>$150.00</h5>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-6">
-            <div class="f_p_item">
-              <div class="f_p_img">
-                <img class="img-fluid" src="/assets/front-end/img/product/feature-product/f-p-4.jpg" alt="">
-                <div class="p_icon">
-                  <a href="#">
-                    <i class="lnr lnr-heart"></i>
-                  </a>
-                  <a href="#">
-                    <i class="lnr lnr-cart"></i>
-                  </a>
-                </div>
-              </div>
-              <a href="#">
-                <h4>Long Sleeve TShirt</h4>
-              </a>
-              <h5>$150.00</h5>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-6">
-            <div class="f_p_item">
-              <div class="f_p_img">
-                <img class="img-fluid" src="/assets/front-end/img/product/feature-product/f-p-5.jpg" alt="">
-                <div class="p_icon">
-                  <a href="#">
-                    <i class="lnr lnr-heart"></i>
-                  </a>
-                  <a href="#">
-                    <i class="lnr lnr-cart"></i>
-                  </a>
-                </div>
-              </div>
-              <a href="#">
-                <h4>Long Sleeve TShirt</h4>
-              </a>
-              <h5>$150.00</h5>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-6">
-            <div class="f_p_item">
-              <div class="f_p_img">
-                <img class="img-fluid" src="/assets/front-end/img/product/feature-product/f-p-4.jpg" alt="">
-                <div class="p_icon">
-                  <a href="#">
-                    <i class="lnr lnr-heart"></i>
-                  </a>
-                  <a href="#">
-                    <i class="lnr lnr-cart"></i>
-                  </a>
-                </div>
-              </div>
-              <a href="#">
-                <h4>Long Sleeve TShirt</h4>
-              </a>
-              <h5>$150.00</h5>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-6">
-            <div class="f_p_item">
-              <div class="f_p_img">
-                <img class="img-fluid" src="/assets/front-end/img/product/feature-product/f-p-3.jpg" alt="">
-                <div class="p_icon">
-                  <a href="#">
-                    <i class="lnr lnr-heart"></i>
-                  </a>
-                  <a href="#">
-                    <i class="lnr lnr-cart"></i>
-                  </a>
-                </div>
-              </div>
-              <a href="#">
-                <h4>Long Sleeve TShirt</h4>
-              </a>
-              <h5>$150.00</h5>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-6">
-            <div class="f_p_item">
-              <div class="f_p_img">
-                <img class="img-fluid" src="/assets/front-end/img/product/feature-product/f-p-4.jpg" alt="">
-                <div class="p_icon">
-                  <a href="#">
-                    <i class="lnr lnr-heart"></i>
-                  </a>
-                  <a href="#">
-                    <i class="lnr lnr-cart"></i>
-                  </a>
-                </div>
-              </div>
-              <a href="#">
-                <h4>Long Sleeve TShirt</h4>
-              </a>
-              <h5>$150.00</h5>
-            </div>
-          </div>
+
         </div>
       </div>
       <div class="col-lg-3">
@@ -183,27 +53,8 @@
             </div>
             <div class="widgets_inner">
               <ul class="list">
-                <li>
-                  <a href="#">Fruits and Vegetables</a>
-                </li>
-                <li>
-                  <a href="#">Meat and Fish</a>
-                  <ul class="list">
-                    <li>
-                      <a href="#">Frozen Fish</a>
-                    </li>
-                    <li>
-                      <a href="#">Dried Fish</a>
-                    </li>
-                    <li>
-                      <a href="#">Fresh Fish</a>
-                    </li>
-
-                  </ul>
-                </li>
-
-                <li>
-                  <a href="#">Home and Cleaning</a>
+                <li th:if="${categories}" th:each="category :  ${categories}">
+                  <a href="#" th:href="@{/shop/${category.slug}}" th:text="${category.name}"></a>
                 </li>
               </ul>
             </div>

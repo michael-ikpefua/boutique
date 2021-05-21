@@ -11,7 +11,7 @@ public interface ICategoryService {
 
     Iterable<Category> viewAllCategories();
 
-    Category getPostBySlug(String slug);
+    Category getCategoryBySlug(String slug);
 
     void deleteCategory(long slug);
 

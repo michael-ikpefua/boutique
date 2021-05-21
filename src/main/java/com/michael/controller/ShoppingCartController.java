@@ -23,7 +23,7 @@ public class ShoppingCartController {
     @Autowired
     Money money;
 
-    @GetMapping("/product/carts")
+    @GetMapping("/shop/carts")
     public String index(Model model, HttpSession session) {
 
         ArrayList<ShoppingCart> productsInSession = (ArrayList<ShoppingCart>) session.getAttribute("products_in_cart");
@@ -34,7 +34,7 @@ public class ShoppingCartController {
 
     }
 
-    @GetMapping("/product/{productId}/add-to-cart")
+    @GetMapping("/shop/{productId}/add-to-cart")
     public String store(@PathVariable(value = "productId") long productId, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
         Product product = productService.getProductById(productId);
         if (product == null) {
@@ -85,7 +85,7 @@ public class ShoppingCartController {
             }
         }
 
-        return "redirect:/product/carts";
+        return "redirect:/shop/carts";
 
     }
 

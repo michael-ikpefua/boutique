@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,7 +23,7 @@ public class CategoryService implements ICategoryService {
     public void addCategory(Category category) {
 
         category.setSlug(slug.makeSlug(category.getName()));
-        Category checkSlotExist = getPostBySlug(category.getSlug());
+        Category checkSlotExist = getCategoryBySlug(category.getSlug());
 
         if (checkSlotExist != null) {
             category.setSlug(category.getSlug() + "-" + (checkSlotExist.getId() + 1));
@@ -36,11 +34,10 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public Iterable<Category> viewAllCategories() {
-        return  categoryRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        return  categoryRepository.findAll(Sort.by(Sort.Direction.DESC, "id", "name"));
     }
 
-    @Override
-    public Category getPostBySlug(String slug) {
+    public Category getCategoryBySlug(String slug) {
         Category category = null;
         Optional<Category> categoryOptional = categoryRepository.findBySlug(slug);
 

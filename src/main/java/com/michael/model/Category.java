@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,5 +21,7 @@ public class Category extends AutoDate {
     @NotEmpty(message = "Name Field is Required")
     private String name;
     private String slug;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Product> products;
 
 }
